@@ -11,6 +11,7 @@ import Esindused from './pages/Esindused'
 import NotFound from './pages/NotFound'
 import Menu from './components/Menu.jsx'
 import Kalkulaator from './pages/Kalkulaator'
+import MaksimaalneKalkulaator from './components/MaksimaalneKalkulaator'
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path="/seaded" element={<Seaded/>} />
         <Route path="/esindused" element={<Esindused/>} />
         <Route path="/kalkulaator" element={<Kalkulaator/>} />
+        <Route path="/maksimaalne-kalkulaator" element={<MaksimaalneKalkulaator/>} />
         <Route path="/*" element={<NotFound/>} />
       </Routes>
         

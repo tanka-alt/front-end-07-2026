@@ -32,6 +32,10 @@ function Menu () {
 			<Link to="/kalkulaator">
 				<button className="nupp">Kalkulaator</button>
 			</Link>
+
+			<Link to="/maksimaalne-kalkulaator">
+				<button className="nupp">Maksimaalne kalkulaator</button>
+			</Link>
 		</div>
 	)
 }
