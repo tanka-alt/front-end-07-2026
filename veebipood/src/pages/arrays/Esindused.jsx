@@ -3,6 +3,13 @@ import { useState } from "react";
 
 function Esindused() {
   const [linn, setLinn] = useState("Tallinn");
+  const [esindused, setEsindused] = useState(["Rocca al Mare", "Kristiine", "Järveotsa", "Ülemiste", "Magistrali", "Vesse"]);
+
+  function sorteeriAZ() {
+    esindused.sort();
+    setEsindused(esindused.slice());
+
+  }
 
   return (
     <div>
@@ -14,12 +21,14 @@ function Esindused() {
 
       {linn === "Tallinn" &&
       <>
-      <div>Rocca al Mare</div>
+      <button onClick={sorteeriAZ}>Sorteeri A-Z</button>
+      {esindused.map(esindus => <div>{esindus}</div>)}
+      {/* <div>Rocca al Mare</div>
       <div>Kristiine</div>
       <div>Järveotsa</div>
       <div>Ülemiste</div>
       <div>Magistrali</div>
-      <div>Vesse</div>
+      <div>Vesse</div> */}
       </>}
       
       {linn === "Tartu" &&
