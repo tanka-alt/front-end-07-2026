@@ -3,13 +3,25 @@ import { useState } from "react";
 
 function Esindused() {
   const [linn, setLinn] = useState("Tallinn");
-  const [esindused, setEsindused] = useState(["Rocca al Mare", "Kristiine", "Järveotsa", "Ülemiste", "Magistrali", "Vesse"]);
+  const [esindused, setEsindused] = useState([
+    {"keskus": "Rocca al Mare", "tel": "5123456", "aadress": "Loomaaia 30"} ,
+    {"keskus": "Kristiine", "tel": "51765767", "aadress": "Loomaaia 31"} ,
+    {"keskus": "Ülemiste", "tel": "51343434", "aadress": "Loomaaia 32"} ,
+    {"keskus": "Magistrali", "tel": "51243434", "aadress": "Loomaaia 33"} ,
+    {"keskus": "Vesse", "tel": "512434434", "aadress": "Loomaaia 34"} ,
+  
+    
+  ]);
 
   function sorteeriAZ() {
-    esindused.sort();
+    esindused.sort((a,b) => a.keskus.localeCompare(b.keskus));
     setEsindused(esindused.slice());
+}
 
-  }
+function sorteeriZA() {
+    esindused.sort((a,b) => b.keskus.localeCompare(a.keskus));
+    setEsindused(esindused.slice());
+}
 
   return (
     <div>
@@ -22,7 +34,9 @@ function Esindused() {
       {linn === "Tallinn" &&
       <>
       <button onClick={sorteeriAZ}>Sorteeri A-Z</button>
-      {esindused.map(esindus => <div>{esindus}</div>)}
+      <button onClick={sorteeriZA}>Sorteeri Z-A</button>
+      {esindused.map(esindus => <div key={esindus.keskus}>{esindus.keskus} - ({esindus.tel}) - {esindus.aadress}</div>)}
+
       {/* <div>Rocca al Mare</div>
       <div>Kristiine</div>
       <div>Järveotsa</div>

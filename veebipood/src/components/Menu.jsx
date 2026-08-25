@@ -40,6 +40,10 @@ function Menu () {
 				<button className="nupp">Halda</button>
 			</Link>
 
+			<Link to="/lisa">
+				<button className="nupp">Lisa</button>
+			</Link>
+
 		</div>
 	)
 }

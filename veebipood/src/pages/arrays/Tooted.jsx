@@ -26,12 +26,12 @@ function sorteeriZA() {
 }
 
 function sorteeriTahedKasvavalt (){
-     tooted.sort((a,b) => a.lenght - b.lenght);
+     tooted.sort((a,b) => a.length - b.length);
      setTooted(tooted.slice());
 }
 
 function sorteeriTahedKahanevalt (){
-     tooted.sort((a,b) => b.lenght - a.lenght);
+     tooted.sort((a,b) => b.length - a.length);
      setTooted(tooted.slice());
 }
 

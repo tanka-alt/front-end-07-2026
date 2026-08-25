@@ -33,7 +33,7 @@ function kustuta(index) {
             </thead>
             <tbody>
                 {tootajad.map((tootaja, index) =>
-                    <tr>
+                    <tr key={index}>
                         <td>{index}</td>
                         <td>{index + 1}</td>
                         <td>{tootaja}</td>

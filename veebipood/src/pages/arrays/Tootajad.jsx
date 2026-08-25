@@ -25,12 +25,12 @@ function sorteeriZA() {
 }
 
 function sorteeriTahedKasvavalt (){
-     tootajad.sort((a,b) => a.lenght - b.lenght);
+     tootajad.sort((a,b) => a.length - b.length);
      setTootajad(tootajad.slice());
 }
 
 function sorteeriTahedKahanevalt (){
-     tootajad.sort((a,b) => b.lenght - a.lenght);
+     tootajad.sort((a,b) => b.length - a.length);
      setTootajad(tootajad.slice());
 }
 

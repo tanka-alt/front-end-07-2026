@@ -33,7 +33,7 @@ function kustuta(index) {
             </thead>
             <tbody>
                 {tooted.map((tooted, index) =>
-                    <tr>
+                    <tr key={index}>
                         <td>{index}</td>
                         <td>{index + 1}</td>
                         <td>{tooted}</td>
