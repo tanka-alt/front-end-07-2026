@@ -2,16 +2,17 @@ import { useState } from "react";
 
 function Tootajad() {
     const [tootajad, setTootajad] = useState([
-"Rasmus Tamm",
-"Laura Kallas",
-"Kaspar Sepp",
-"Marta Saar",
-"Sander Lõhmus",
-"Eliise Rebane",
-"Markus Oja",
-"Anni Kuusk",
-"Kristjan Vaher",
-"Liis Kivi",
+{"nimi": "Rasmus Tamm", "email": "rasmus.tamm@auto.ee"},
+{"nimi": "Laura Kallas", "email": "laura.kallas@auto.ee"},
+{"nimi": "Kaspar Sepp", "email": "kaspar.sepp@auto.ee"},
+{"nimi": "Marta Saar", "email": "marta.saar@auto.ee"},
+{"nimi": "Sander Lõhmus", "email": "sander.lohmus@auto.ee"},
+{"nimi": "Eliise Rebane", "email": "eliise.rebane@auto.ee"},
+{"nimi": "Markus Oja", "email": "markus.oja@auto.ee"},
+{"nimi": "Anni Kuusk", "email": "anni.kuusk@auto.ee"},
+{"nimi": "Kristjan Vaher", "email": "kristjan.vaher@auto.ee"},
+{"nimi": "Liis Kivi", "email": "liis.kivi@auto.ee"},
+
 ]);
 
 function sorteeriAZ() {
@@ -42,11 +43,11 @@ function sorteeriTahedKahanevalt (){
         <button onClick={sorteeriTahedKahanevalt}>Sorteeri tähtede arv kahanevalt</button>
 
         
-        <div>{tootajad.map(tootaja => <div>{tootaja}</div>)}</div>
+        <div>{tootajad.map(tootaja => <div key={tootaja.nimi}>{tootaja.nimi} <br /> 
+            {tootaja.email}</div>)}</div>
     </div>
   )
 }
 
 export default Tootajad
 
-//10 töötajat, kustutamine, sorteerimine, A-z, Z-a, kasvav, kahanev
