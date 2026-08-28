@@ -1,49 +1,92 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Autod() {
-    const [autod, setAutod] = useState([
-  {"mark": "Toyota Camry", "hind": 35000, "aasta": 2024, "pilt": ""},
-  {"mark": "Honda Civic", "hind": 34000, "aasta": 2015, "pilt": ""},
-  {"mark": "Ford Mustang", "hind": 33000, "aasta": 2016, "pilt": ""},
-  {"mark": "Chevrolet Corvette", "hind": 32000, "aasta": 2017, "pilt": ""},
-  {"mark": "BMW M3", "hind": 31000, "aasta": 2018, "pilt": ""},
-  {"mark": "Porsche 911", "hind": 30000, "aasta": 2019, "pilt": ""},
-  {"mark": "Tesla Model 3", "hind": 29000, "aasta": 2020, "pilt": ""},
-  {"mark": "Mazda MX-5 Miata", "hind": 28000, "aasta": 2021, "pilt": ""},
-  {"mark": "Audi A4", "hind": 27000, "aasta": 2022, "pilt": ""},
-  {"mark": "Mercedes-Benz C-Class", "hind": 26000, "aasta": 2023, "pilt": ""},
+     const [autod, setAutod] = useState([]);
+  
+    useEffect(() => {
+      fetch("https://6a917d2e7751d35ce47e889a.mockapi.io/autod")
+      .then(response => response.json())
+      .then(json => setAutod(json));
+    }, []);
+  
+  
 
-]);
+    function sorteeriAZ() {
+      autod.sort((a,b) => a.mark.localeCompare(b.mark));
+      setAutod(autod.slice());
+    }
 
-function sorteeriAZ() {
-    autod.sort((a,b) => a.mark.localeCompare(b.mark));
-    setAutod(autod.slice());
-}
+    function sorteeriZA() {
+      autod.sort((a,b) => b.mark.localeCompare(a.mark));
+      setAutod(autod.slice());
+    }
 
-function sorteeriZA() {
-    autod.sort((a,b) => b.mark.localeCompare(a.mark));
-    setAutod(autod.slice());
-}
+    function sorteeriTahedKasvavalt (){
+      autod.sort((a,b) => a.mark.length - b.mark.length);
+      setAutod(autod.slice());
+    }
 
-function sorteeriTahedKasvavalt (){
-     autod.sort((a,b) => a.mark.length - b.mark.length);
-     setAutod(autod.slice());
-}
+    function sorteeriTahedKahanevalt (){
+      autod.sort((a,b) => b.mark.length - a.mark.length);
+      setAutod(autod.slice());
+    }
 
-function sorteeriTahedKahanevalt (){
-     autod.sort((a,b) => b.mark.length - a.mark.length);
-     setAutod(autod.slice());
-}
+    function sorteeriKolmasTahtAZ (){
+      autod.sort((a,b) => a.mark[2].localeCompare(b.mark[2]));
+      setAutod(autod.slice());
+    }
+
+    function filtreeriOdavamadKui80000(){
+      const vastus = autod.filter(auto => auto.hind < 800);
+      setAutod(vastus);
+    }
+
+    function filtreeriKallimadKui25000(){
+      const vastus = autod.filter(auto => auto.hind > 250);
+      setAutod(vastus);
+    }
+
+    function filtreeriLoppebTahega(){
+      const vastus = autod.filter(auto => auto.mark.endsWith("a"));
+      setAutod(vastus);
+    }
+
+    function filtreeriRohkemKui10Tahte(){
+      const vastus = autod.filter(auto => auto.mark.length > 10);
+      setAutod(vastus);
+    }
+
+     function filtreeriKellelTeineTahtO(){
+      const vastus = autod.filter(auto => auto.mark[1] === "o");
+      setAutod(vastus);
+    }
+
+    function reset(){
+      fetch("https://6a917d2e7751d35ce47e889a.mockapi.io/autod")
+        .then(response => response.json())
+        .then(json => setAutod(json));
+    } 
 
   return (
     <div>
+        <div>{autod.length}tk</div>
+        <button onClick={reset}>Võta filtrid maha</button>
         <button onClick={sorteeriAZ}>Sorteeri mark A-Z</button>
         <button onClick={sorteeriZA}>Sorteeri mark Z-A</button>
         <button onClick={sorteeriTahedKasvavalt}>Sorteeri margi tähtede arv kasvavalt</button>
         <button onClick={sorteeriTahedKahanevalt}>Sorteeri margi tähtede arv kahanevalt</button>
-
-        
-        <div>{autod.map(auto => <div key={auto.mark}>({auto.aasta}) - {auto.hind}€</div>)}</div>
+        <button onClick={sorteeriKolmasTahtAZ}>Sorteeri margi kolmas täht</button>
+        <br /> <br />
+        <button onClick={filtreeriOdavamadKui80000}>Jäta alles odavamad kui 800</button>
+        <button onClick={filtreeriKallimadKui25000}>Jäta alles kallimad kui 250</button>
+        <button onClick={filtreeriLoppebTahega}>Jäta alles lõppevad a-tähega</button>
+        <button onClick={filtreeriRohkemKui10Tahte}>Jäta alles kellel on rohkem kui 10 tähte</button>
+        <button onClick={filtreeriKellelTeineTahtO}>Jäta alles kellel on teine täht O</button>
+        <div>{autod.map(auto => 
+          <div key={auto.id}>
+          {auto.mark} ({auto.tootja}) - {auto.hind}€
+          </div>)}
+        </div>
     </div>
   )
 }

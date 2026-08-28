@@ -1,23 +1,23 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function HaldaHinnad() {
-    const [hinnad, setHinnad] = useState([
-      {"arv": 321, "sonana": "kolmsada kakskteist" },
-      {"arv": 12, "sonana": "kakskteist" },
-      {"arv": 300, "sonana": "kolmsada" },
-      {"arv": 9, "sonana": "üheksa" },
-      {"arv": 34556, "sonana": "kolmkümmendneli tuhat viisadaviiskümmend kuus" },
-      {"arv": 81, "sonana": "kaheksakümmend üks" },
-])
+  const [hinnad, setHinnad] = useState([]);
 
-function kustuta(index) {
+	useEffect(() => {
+    fetch("https://6a917d2e7751d35ce47e889a.mockapi.io/hinnad")
+    .then(response => response.json())
+    .then(json => setHinnad(json));
+  }, []);
+
+  function kustuta(index, id) {
     hinnad.splice(index,1);
     setHinnad(hinnad.slice());
-
-}
+		fetch("https://6a917d2e7751d35ce47e889a.mockapi.io/hinnad/" + id, {method: "DELETE"})
+	}
 
   return (
     <div>
+			<div>Kokku hindu: {hinnad.length} tk</div>
         <table>
             <thead>
                 <tr>
@@ -35,7 +35,7 @@ function kustuta(index) {
                         <td>{index + 1}</td>
                         <td>{hind.arv}</td>
                         <td>{hind.sonana}</td>
-                        <td><button onClick={() => kustuta(index)}>x</button></td>
+                        <td><button onClick={() => kustuta(index, hind.id)}>x</button></td>
                     </tr>
                 )}
             </tbody>
