@@ -9,8 +9,6 @@ function Autod() {
       .then(json => setAutod(json));
     }, []);
   
-  
-
     function sorteeriAZ() {
       autod.sort((a,b) => a.mark.localeCompare(b.mark));
       setAutod(autod.slice());

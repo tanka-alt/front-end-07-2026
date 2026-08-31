@@ -9,7 +9,6 @@ useEffect(() => {
     .then(json => setAutod(json));
 }, []);
 
-
 function kustuta(index, id) {
     console.log(id);
     autod.splice(index,1);

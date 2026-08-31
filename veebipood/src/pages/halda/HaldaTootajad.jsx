@@ -1,25 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function HaldaTootajad () {
-    const [tootajad, setTootajad] = useState([
-{"nimi": "Rasmus Tamm", "email": "rasmus.tamm@auto.ee"},
-{"nimi": "Laura Kallas", "email": "laura.kallas@auto.ee"},
-{"nimi": "Kaspar Sepp", "email": "kaspar.sepp@auto.ee"},
-{"nimi": "Marta Saar", "email": "marta.saar@auto.ee"},
-{"nimi": "Sander Lõhmus", "email": "sander.lohmus@auto.ee"},
-{"nimi": "Eliise Rebane", "email": "eliise.rebane@auto.ee"},
-{"nimi": "Markus Oja", "email": "markus.oja@auto.ee"},
-{"nimi": "Anni Kuusk", "email": "anni.kuusk@auto.ee"},
-{"nimi": "Kristjan Vaher", "email": "kristjan.vaher@auto.ee"},
-{"nimi": "Liis Kivi", "email": "liis.kivi@auto.ee"},
+    const [tootajad, setTootajad] = useState([])
 
+useEffect(() => {
+    fetch("https://6a958883fa33b37f821ac17c.mockapi.io/employees/")
+    .then(response => response.json())
+    .then(json => setTootajad(json));
+}, []);
 
-]);
-
-
-function kustuta(index) {
-    tootajad.splice(index,1);
-    setTootajad(tootajad.slice());
+function kustuta(id) {
+    setTootajad(tootajad.filter(tootaja => tootaja.id !== id));
+    fetch("https://6a958883fa33b37f821ac17c.mockapi.io/employees/" + id, {method: "DELETE"});
 }
 
   return (
@@ -28,20 +20,22 @@ function kustuta(index) {
             <thead>
                 <tr>
                     <th>Index</th>
-                    <th>Järjekorranumber</th>
+                    <th>Töötaja ID</th>
                     <th>Töötaja nimi</th>
                     <th>Töötaja email</th>
+                    <th>Töötaja telefon</th>
                     <th>Kustuta</th>
                 </tr>
             </thead>
             <tbody>
                 {tootajad.map((tootaja, index) =>
-                    <tr key={index}>
+                    <tr key={tootaja.id}>
                         <td>{index}</td>
-                        <td>{index + 1}</td>
+                        <td>{tootaja.id}</td>
                         <td>{tootaja.nimi}</td>
                         <td>{tootaja.email}</td>
-                        <td><button onClick={() => kustuta(index)}>x</button></td>
+                        <td>{tootaja.telefon}</td>
+                        <td><button onClick={() => kustuta(tootaja.id)}>x</button></td>
                     </tr>
                 )}
             </tbody>

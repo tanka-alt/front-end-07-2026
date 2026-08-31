@@ -1,50 +1,49 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function HaldaTooted () {
-    const [tooted, setTooted] = useState([
-{"toode": "Aknapesuvedelik", "hind":"12"},
-{"toode": "Mootoriõli", "hind":"23"},
-{"toode": "Jahutusvedelik", "hind":"18"},
-{"toode": "Pidurivedelik", "hind":"26"},
-{"toode": "Klaasipuhastid", "hind":"36"},
-{"toode": "Autošampoon", "hind":"8"},
-{"toode": "Rattapoltide võti", "hind":"15"},
-{"toode": "Akulaadija", "hind":"32"},
-{"toode": "Lumehari", "hind":"17"},
-{"toode": "Salongifilter", "hind":"30"}
-]);
+    const [tooted, setTooted] = useState([])
 
+useEffect(() => {
+    fetch("https://6a958883fa33b37f821ac17c.mockapi.io/HaldaToode")
+    .then(response => response.json())
+    .then(json => setTooted(json));
+}, []);
 
-function kustuta(index) {
-    tooted.splice(index,1);
-    setTooted(tooted.slice());
+function kustuta(id) {
+    setTooted(tooted.filter(toode => toode.id !== id));
+    fetch("https://6a958883fa33b37f821ac17c.mockapi.io/HaldaToode/" + id, {method: "DELETE"});
 }
 
-  return (
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Index</th>
-                    <th>Järjekorranumber</th>
-                    <th>Toote nimi</th>
-                    <th>Kustuta</th>
-                </tr>
-            </thead>
-            <tbody>
-                {tooted.map((tooted, index) =>
-                    <tr key={index}>
-                        <td>{index}</td>
-                        <td>{index + 1}</td>
-                        <td>{tooted.toode}</td>
-                        <td>{tooted.hind}</td>
-                        <td><button onClick={() => kustuta(index)}>x</button></td>
+return (
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>Toote ID</th>
+                        <th>Nimi</th>
+                        <th>Hind</th>
+                        <th>Kirjeldus</th>
+                        <th>Kustuta</th>
                     </tr>
-                )}
-            </tbody>
-        </table>
-    </div>
-  )
+                </thead>
+                <tbody>
+                    {tooted.map((toode, index) =>
+                        <tr key={toode.id}>
+                            <td>{index}</td>
+                            <td>{toode.id}</td>
+                            <td>{toode.nimi}</td>
+                            <td>{toode.hind}</td>
+                            <td>{toode.kirjeldus}</td>
+                            <td>
+                                <button onClick={() => kustuta(toode.id)}>x</button>
+                            </td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
+        </div>
+    )
 }
 
 export default HaldaTooted
