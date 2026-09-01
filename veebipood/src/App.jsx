@@ -17,7 +17,7 @@ import Hinnad from './pages/arrays/Hinnad'
 import Kasutajad from './pages/arrays/Kasutajad'
 import Tooted from './pages/arrays/Tooted'
 import Tootajad from './pages/arrays/Tootajad'
-import Arrays from './pages/arrays/Arrays'
+import Arrays from './pages/arrays/Arrays.jsx'
 import HaldaHome from './pages/halda/HaldaHome'
 import HaldaAutod from './pages/halda/HaldaAutod'
 import HaldaEsindused from './pages/halda/HaldaEsindused'
@@ -31,6 +31,13 @@ import LisaAuto from './pages/lisa/LisaAuto.jsx'
 import LisaHind from './pages/lisa/LisaHind.jsx'
 import LisaKasutaja from './pages/lisa/LisaKasutaja.jsx'
 import LisaTootaja from './pages/lisa/LisaTootaja.jsx'
+import ApiHome from './pages/api/ApiHome.jsx'
+import Books from './pages/api/Books.jsx'
+import Cars from './pages/api/Cars.jsx'
+import Product1 from './pages/api/Products1.jsx'
+import Product2 from './pages/api/Products2.jsx'
+import Product3 from './pages/api/Products3.jsx'
+import Vocabulary from './pages/api/Vocabulary.jsx'
 
 
 
@@ -71,7 +78,15 @@ function App() {
         <Route path="/lisa-hind" element={<LisaHind/> } />
         <Route path="/lisa-kasutaja" element={<LisaKasutaja/> } />
         <Route path="/lisa-toode" element={<LisaToode/> } />
-        <Route path="/lisa-tootaja" element={<LisaTootaja/> } />       
+        <Route path="/lisa-tootaja" element={<LisaTootaja/> } />     
+
+        <Route path="/api" element={<ApiHome/> } />
+        <Route path="/books" element={<Books/> } />
+        <Route path="/cars" element={<Cars/> } />
+        <Route path="/product1" element={<Product1/> } />
+        <Route path="/product2" element={<Product2/> } />
+        <Route path="/product3" element={<Product3/> } />
+        <Route path="/vocabulary" element={<Vocabulary/> } />    
         
         <Route path="/maksimaalne-kalkulaator" element={<MaksimaalneKalkulaator/>} />
         <Route path="/*" element={<NotFound/>} />

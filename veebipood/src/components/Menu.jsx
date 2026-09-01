@@ -44,6 +44,10 @@ function Menu () {
 				<button className="nupp">Lisa</button>
 			</Link>
 
+			<Link to="/api">
+				<button className="nupp">API</button>
+			</Link>
+
 		</div>
 	)
 }
