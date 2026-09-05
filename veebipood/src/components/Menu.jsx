@@ -1,53 +1,33 @@
-import { Link } from "react-router-dom";
 import logo from '../assets/logo.png'
+import { Drawer } from '@mui/material';
+import { useState } from "react";
+import { AiOutlineMenu } from "react-icons/ai";
+import MenuLinks from './MenuLinks';
+import { Link, } from "react-router-dom";
 
 function Menu () {
+	const [open, setOpen] = useState(false);
+
+	const toggleDrawer = (newOpen) => () => {
+		setOpen(newOpen);
+	};
+
 	return (
 		<div>
+			<span className="menu-mobile">
+				<AiOutlineMenu onClick={toggleDrawer(true)}/>
+				<Drawer open={open} onClose={toggleDrawer(false)}>
+					<MenuLinks toggleDrawer={toggleDrawer} cssClass="menu-links-mobile" />
+				</Drawer>
+			</span>
+
 			<Link to="/">
 				<img className= "logo" src={logo} alt="Logo" />
 			</Link>
-			{/* <img src="" alt="" /> */}
 
-			<Link to="/ostukorv">
-				<button className="nupp">Ostukorv</button>
-			</Link>
-
-			<Link to="/osta-kinkekaart">
-				<button className="nupp">Osta kinkekaart</button>
-			</Link>
-
-			<Link to="/lisa-toode">
-				<button className="nupp">Lisa toode</button>
-			</Link>
-
-			<Link to="/seaded">
-				<button className="nupp">Seaded</button>
-			</Link>
-
-			<Link to="/esindused">
-				<button className="nupp">Esindused</button>
-			</Link>
-
-			<Link to="/kalkulaator">
-				<button className="nupp">Kalkulaator</button>
-			</Link>
-			<Link to="/arrays">
-				<button className="nupp">Arrays</button>
-			</Link>
-
-			<Link to="/halda">
-				<button className="nupp">Halda</button>
-			</Link>
-
-			<Link to="/lisa">
-				<button className="nupp">Lisa</button>
-			</Link>
-
-			<Link to="/api">
-				<button className="nupp">API</button>
-			</Link>
-
+			<span className="menu-desktop">
+				<MenuLinks toggleDrawer={toggleDrawer} cssClass="menu-links-desktop" />
+			</span>
 		</div>
 	)
 }

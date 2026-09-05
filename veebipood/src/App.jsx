@@ -11,7 +11,6 @@ import Esindused from './pages/arrays/Esindused'
 import NotFound from './pages/NotFound'
 import Menu from './components/Menu.jsx'
 import Kalkulaator from './pages/Kalkulaator'
-import MaksimaalneKalkulaator from './pages/MaksimaalneKalkulaator.jsx'
 import Autod from './pages/arrays/Autod'
 import Hinnad from './pages/arrays/Hinnad'
 import Kasutajad from './pages/arrays/Kasutajad'
@@ -38,6 +37,7 @@ import Product1 from './pages/api/Products1.jsx'
 import Product2 from './pages/api/Products2.jsx'
 import Product3 from './pages/api/Products3.jsx'
 import Vocabulary from './pages/api/Vocabulary.jsx'
+import Tabs from './components/Tabs.jsx'
 
 
 
@@ -88,11 +88,12 @@ function App() {
         <Route path="/product3" element={<Product3/> } />
         <Route path="/vocabulary" element={<Vocabulary/> } />    
         
-        <Route path="/maksimaalne-kalkulaator" element={<MaksimaalneKalkulaator/>} />
         <Route path="/*" element={<NotFound/>} />
       </Routes>
-        
 
+      <span className="tabs">
+        <Tabs />
+      </span>
     </>
   )
 }
