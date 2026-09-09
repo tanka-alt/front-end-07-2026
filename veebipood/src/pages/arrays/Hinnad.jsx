@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Hinnad() {
     const [hinnad, setHinnad] = useState([]);
@@ -43,7 +44,13 @@ function Hinnad() {
         <button onClick={filtreeriVaiksemadKui500}>Filtreeri väiksemad kui 500</button>
         <button onClick={filtreeriSuuremadKui2000}>Filtreeri suuremad kui 2000</button>
 
-        {hinnad.map(hind => <div key={hind.arv}>{hind.arv} {(hind.sonana)}</div>)}
+        {hinnad.map(hind => 
+          <div key={hind.id}>
+          {hind.arv} ({hind.sonana})
+          <Link to={"/yks-hind/" + hind.id}>
+            <button>Vt lähemalt</button>
+          </Link>
+          </div> )}
     </div>
   )
 }

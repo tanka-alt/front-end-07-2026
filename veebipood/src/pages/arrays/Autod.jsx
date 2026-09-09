@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Autod() {
      const [autod, setAutod] = useState([]);
@@ -81,8 +82,11 @@ function Autod() {
         <button onClick={filtreeriRohkemKui10Tahte}>Jäta alles kellel on rohkem kui 10 tähte</button>
         <button onClick={filtreeriKellelTeineTahtO}>Jäta alles kellel on teine täht O</button>
         <div>{autod.map(auto => 
-          <div key={auto.id}>
-          {auto.mark} ({auto.tootja}) - {auto.hind}€
+          <div key={auto.ID}>
+          {auto.ID}: {auto.mark} ({auto.tootja}) - {auto.hind}€
+          <Link to={"/yks-auto/" + auto.ID}>
+            <button>Vt lähemalt</button>
+          </Link>
           </div>)}
         </div>
     </div>

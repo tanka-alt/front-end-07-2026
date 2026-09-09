@@ -38,6 +38,12 @@ import Product2 from './pages/api/Products2.jsx'
 import Product3 from './pages/api/Products3.jsx'
 import Vocabulary from './pages/api/Vocabulary.jsx'
 import Tabs from './components/Tabs.jsx'
+import YksAuto from './pages/yks/YksAuto.jsx'
+import YksEsindus from './pages/yks/YksEsindus.jsx'
+import YksHind from './pages/yks/YksHind.jsx'
+import YksKasutaja from './pages/yks/YksKasutaja.jsx'
+import YksToode from './pages/yks/YksToode.jsx'
+import YksTootaja from './pages/yks/YksTootaja.jsx'
 
 
 
@@ -78,7 +84,14 @@ function App() {
         <Route path="/lisa-hind" element={<LisaHind/> } />
         <Route path="/lisa-kasutaja" element={<LisaKasutaja/> } />
         <Route path="/lisa-toode" element={<LisaToode/> } />
-        <Route path="/lisa-tootaja" element={<LisaTootaja/> } />     
+        <Route path="/lisa-tootaja" element={<LisaTootaja/> } />
+
+        <Route path="/yks-auto/:autoId" element={<YksAuto/> } />
+        <Route path="/yks-esindus" element={<YksEsindus/> } />
+        <Route path="/yks-hind/:hindId" element={<YksHind/> } />
+        <Route path="/yks-kasutaja" element={<YksKasutaja/> } />
+        <Route path="/yks-toode" element={<YksToode/> } />
+        <Route path="/yks-tootaja" element={<YksTootaja/> } />         
 
         <Route path="/api" element={<ApiHome/> } />
         <Route path="/books" element={<Books/> } />
