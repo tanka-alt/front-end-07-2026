@@ -1,4 +1,4 @@
-//import { useState } from 'react'
+import { useState } from 'react'
 
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
@@ -46,13 +46,22 @@ import YksToode from './pages/yks/YksToode.jsx'
 import YksTootaja from './pages/yks/YksTootaja.jsx'
 
 
-
 function App() {
-  //const [count, setCount] = useState(0)
+  const [tume, setTume] = useState(localStorage.getItem("darkTheme") || "false");
+
+  const vahetaTeema = () => {
+    if (tume === "true") {
+    localStorage.setItem("darkTheme", "false");
+    setTume("false");
+    } else {
+    localStorage.setItem("darkTheme", "true");
+    setTume("true");
+  }
+}
 
   return (
-    <>
-      <Menu />
+    <div className={tume === "true" ? "tume" : ""}>
+      <Menu theme={tume} toggleTheme={vahetaTeema} />
 
       <Routes>
         <Route path="/" element={<Avaleht/> } />
@@ -107,7 +116,7 @@ function App() {
       <span className="tabs">
         <Tabs />
       </span>
-    </>
+    </div>
   )
 }
 

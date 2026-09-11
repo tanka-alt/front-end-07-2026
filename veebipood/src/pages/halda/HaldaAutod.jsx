@@ -20,6 +20,8 @@ if (autod.length === 0) {
     return <div>Loading...</div>
 }
 
+console.log(autod);
+
   return (
     <div>
         <div>{autod.length}tk</div>
@@ -32,6 +34,7 @@ if (autod.length === 0) {
                     <th>Auto mark</th>
                     <th>Auto hind</th>
                     <th>Auto värv</th>
+                    <th>Auto värv eesti keeles</th>
                     <th>Auto pilt</th>
                     <th>Kustuta</th>
                 </tr>
@@ -45,6 +48,7 @@ if (autod.length === 0) {
                         <td>{auto.mark}</td>
                         <td>{auto.hind}</td>
                         <td>{auto.varv}</td>
+                        <td>{auto.varvEST}</td>
                         <td>{auto.pilt}</td>
                         <td><button onClick={() => kustuta(index, auto.ID)}>x</button></td>
                     </tr>

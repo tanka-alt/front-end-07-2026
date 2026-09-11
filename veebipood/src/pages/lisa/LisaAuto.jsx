@@ -9,6 +9,7 @@
   const hindRef = useRef();
   const varvRef = useRef();
   const piltRef = useRef();
+  const varvESTRef = useRef();
 
   useEffect(() => {
     fetch ("carapi/api/makes/v2")
@@ -49,6 +50,7 @@
         mark: markRef.current.value,
         hind: hindRef.current.value,
         varv: varvRef.current.value,
+        varvEST: varvRef.current.value,
         pilt: piltRef.current.value
       }),
       headers: {
@@ -69,8 +71,10 @@
       <input ref={markRef} type="text" /> <br />
       <label>Auto hind</label> <br />
       <input ref={hindRef} type="text" /> <br />
-      <label>Auto värv</label> <br />
-      <input ref={varvRef} type="text" /> <br />     
+      <label>Auto värv inglise keeles</label> <br />
+      <input ref={varvRef} type="text" /> <br />
+      <label>Auto värv eesti keeles</label> <br />
+      <input ref={varvRef} type="text" /> <br />        
       <label>Auto pilt</label> <br />
       <input ref={piltRef} type="text" /> <br /> 
       <button onClick={() => lisa()}>Sisesta</button> <br />

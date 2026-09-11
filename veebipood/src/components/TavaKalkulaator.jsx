@@ -37,7 +37,9 @@ function TavaKalkulaator() {
 
   return (
     <div>
-		<div>{nr1} {operator} {nr2 !== undefined && nr2} {result !== undefined && <span>=</span>} {result}</div>
+		<h2>Tavakalkulaator</h2>
+		<div className="tava-kalkulaator">
+		<div className="tava-ekraan">{nr1} {operator} {nr2 !== undefined && nr2} {result !== undefined && <span>=</span>} {result}</div>
         <button onClick={() => setNr(7)}>7</button>
         <button onClick={() => setNr(8)}>8</button>
         <button onClick={() => setNr(9)}>9</button>
@@ -58,6 +60,7 @@ function TavaKalkulaator() {
         <button onClick={() => setOperator("/")}>/</button>
 		<button onClick={() => calculateResult()}>=</button>
         <br />
+		</div>
 
     </div>
   )

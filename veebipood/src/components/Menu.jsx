@@ -5,7 +5,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import MenuLinks from './MenuLinks';
 import { Link, } from "react-router-dom";
 
-function Menu () {
+function Menu ({ theme, toggleTheme }) {
 	const [open, setOpen] = useState(false);
 
 	const toggleDrawer = (newOpen) => () => {
@@ -13,9 +13,9 @@ function Menu () {
 	};
 
 	return (
-		<div>
+		<div className="menu">
 			<span className="menu-mobile">
-				<AiOutlineMenu onClick={toggleDrawer(true)}/>
+				<AiOutlineMenu className="menu-icon" onClick={toggleDrawer(true)}/>
 				<Drawer open={open} onClose={toggleDrawer(false)}>
 					<MenuLinks toggleDrawer={toggleDrawer} cssClass="menu-links-mobile" />
 				</Drawer>
@@ -28,6 +28,10 @@ function Menu () {
 			<span className="menu-desktop">
 				<MenuLinks toggleDrawer={toggleDrawer} cssClass="menu-links-desktop" />
 			</span>
+
+			<button className="theme-nupp" onClick={toggleTheme}>
+				{theme === "true" ? "☀️" : "🌙"}
+			</button>
 		</div>
 	)
 }

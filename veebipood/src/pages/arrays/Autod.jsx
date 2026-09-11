@@ -66,6 +66,18 @@ function Autod() {
         .then(json => setAutod(json));
     } 
 
+    function lisaOstukorvi(auto) {
+      const ostukorvLS = JSON.parse(localStorage.getItem("ostukorvLS")) || [];
+      ostukorvLS.push(auto);
+      localStorage.setItem("ostukorv", JSON.stringify(ostukorvLS));
+    }
+
+    // 1. Võtan andmed LocalStoragest (localStorage.getItem("ostukorv"))
+    // 2. võtan jutumärgid maha (JSON.parse)
+    // 3. lisan uue auto ostukorvi (push)
+    // 4. panen jutumärgid tagasi (JSON.stringify)
+    // 5. panen LocalStorage-sse tagasi (localStorage.setitem("ostukorv",...))
+
   return (
     <div>
         <div>{autod.length}tk</div>
@@ -87,6 +99,7 @@ function Autod() {
           <Link to={"/yks-auto/" + auto.ID}>
             <button>Vt lähemalt</button>
           </Link>
+          <button onClick={() => lisaOstukorvi(auto)}>Lisa ostukorvi</button>
           </div>)}
         </div>
     </div>

@@ -21,6 +21,7 @@ function LaenuKalkulaator() {
 
   return (
     <div>
+				<h2>Laenukalkulaator</h2>
 				<label>Kinnisvara ostuhind</label>
 				<input defaultValue="75000"onChange={arvutaKokku} ref={ostuhindRef} type="number" /> <br />
 				<label>Sissemakse</label>

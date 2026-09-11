@@ -1,17 +1,28 @@
 import LaenuKalkulaator from "../components/LaenuKalkulaator";
 import TavaKalkulaator from "../components/TavaKalkulaator";
 import MaksimaalneKalkulaator from "../components/MaksimaalneKalkulaator";
+import SaastuKalkulaator from "../components/SaastuKalkulaator";
 
 
 function Kalkulaator() {
 
   return (
 	<div className="kalkulaator">
-		<TavaKalkulaator />
+		<div className="kalkulaator-sektsioon">
+			<TavaKalkulaator />
+		</div>
 
-		<LaenuKalkulaator />
+		<div className="kalkulaator-sektsioon">
+			<LaenuKalkulaator />
+		</div>
 
-		<MaksimaalneKalkulaator />
+		<div className="kalkulaator-sektsioon">
+			<MaksimaalneKalkulaator />
+		</div>
+
+		<div className="kalkulaator-sektsioon">
+			<SaastuKalkulaator />
+		</div>
 	</div>
   )
 }

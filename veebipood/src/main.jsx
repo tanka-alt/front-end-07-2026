@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
+import './i18n.js'
 
 // Navigeerimiseks (URLi vahetamine koos sisu(HTML) vahetusega) on vajalik:
 // 1. panna node_modules kausta react-router-dom kood (npm install react-router-dom)

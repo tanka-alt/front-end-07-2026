@@ -18,6 +18,7 @@ import { useRef, useState } from "react";
 
   return (
     <div>
+        <h2>Maksimaalne laenulimiit</h2>
         <label>Ülalpeetavate arv</label>
         <input defaultValue="0" onChange={arvutaMaksimaalneLimiit} ref={ylalpeetavateArvRef} type="number" /> <br />
         <label>Netosissetulek</label>

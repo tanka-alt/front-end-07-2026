@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 
   function Ostukorv() {
-    const [tooted, setTooted] = useState(["Coca", "Fanta", "Sprite"]);
+    const [tooted, setTooted] = useState(JSON.parse(localStorage.getItem("ostukorv")) || []);
     const [parcelMachines, setParcelMachines] = useState([]);
 
   function kustuta(index) {
     tooted.splice(index, 1);
     setTooted(tooted.slice());
+    localStorage.setItem("ostukorv", JSON.stringify(tooted));
   }
 
   useEffect(() => {
@@ -18,6 +19,11 @@ import { useState, useEffect } from "react";
 
     fetchParcelMachines();
   }, []);
+
+  function tyhjenda (){
+    setTooted([]);  // uuenda HTML-s ostukorvi seisu
+    localStorage.setItem("ostukorv", JSON.stringify([])); // uuenda LocalStorage'it
+  }
 
   async function pay() {
     const response = await fetch("https://igw-demo.every-pay.com/api/v4/payments/oneoff", {
@@ -31,7 +37,7 @@ import { useState, useEffect } from "react";
         "amount": 10.00,
         "timestamp": new Date(),
         "nonce": new Date() + Math.random(),
-        "order_reference": "ORDER-12345",
+        "order_reference": "ORDER-" + Math.random(),
         "customer_url": "https://yourwebsite.com/thank-you",
         "api_username": "e36eb40f5ec87fa2",
       })
@@ -40,12 +46,16 @@ import { useState, useEffect } from "react";
     console.log(data);
   }
 
+
   return (
     <div>
-      <button onClick={() => setTooted ([])}>Tühjenda</button>
+      <button onClick={() => tyhjenda()}>Tühjenda</button>
       <br />
       <div>Toodete koguarv: {tooted.length} tk</div>
-      <div>{tooted.map((toode, index) => <div>{toode} <button onClick={() => kustuta(index)}>x</button></div>)}</div>
+      <div>{tooted.map((toode, index) => 
+        <div>
+          {toode.tootja} {toode.mark}: {toode.hind} 
+          <button onClick={() => kustuta(index)}>x</button></div>)}</div>
       <br />
       <select>
         {parcelMachines.map((pm, index) => <option key={index}>{pm.NAME}</option>)}
